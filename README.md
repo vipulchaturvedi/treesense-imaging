@@ -20,13 +20,15 @@ The project includes a website with a landing page and a dashboard offering the 
 - Visualization: Generates maps, reports, and visual representations of tree enumeration data.
 
 ## Screenshots
+<center>
+
 ![Landing Page](screenshots/landing_page.png)
 *Landing page showcasing project overview.*
 
 ![Dashboard](screenshots/dashboard.png)
 *Dashboard with the Tree Count tool*
 
-![Green Cover Estimator](screenshots/green_cover.png)
+![Green Cover Estimator](screenshots/green_cover_estimator.png)
 *Green Cover Estimator tool activated.*
 
 ![Optimal Pathing](screenshots/optimal_pathing.png)
@@ -35,6 +37,7 @@ The project includes a website with a landing page and a dashboard offering the 
 ![Historical Data](screenshots/historical_data.png)
 *Historical Data Results*
 
+</center>
 
 ## Getting Started
 To start using the tools, visit the website and navigate to the dashboard [here.](https://treesense.vipulchaturvedi.com/predict)
