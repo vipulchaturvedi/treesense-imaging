@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  padding: 20px;
+}
+
+h1, h2 {
+  color: #006400; /* Dark Green */
+}
+
+form {
+  margin-bottom: 20px;
+}
+
+input[type="text"] {
+  padding: 10px;
+  width: 70%;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #32CD32; /* Lime Green */
+  color: white;
+  border: none;
+}
+
+button:hover {
+  background-color: #228B22; /* Forest Green */
+}
+
+#weather {
+  margin-top: 20px;
+}
+
+canvas {
+  width: 100%;
+}
+
+/* Responsive styles */
+@media (max-width: 600px) {
+    input[type="text"] {
+        width: auto;
+    }
+}
+
+    </style>
+</head>
+<body>
+    <h1>Weather Data</h1>
+    <form id="location-form">
+        <input type="text" id="location" placeholder="Enter Location">
+        <button type="button" id="get-weather">Get Weather</button>
+    </form>
+    <div id="weather" style="display: none;">
+        <h2>Current Weather</h2>
+        <div id="current-weather"></div>
+        <h2>Historical Weather</h2>
+        <canvas id="historical-chart"></canvas>
+    </div>
+    <script src="/src/assets/js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+/* Basic Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  body {
+    font-family: 'Helvetica Neue', sans-serif;
+    color: #333;
+    background-color: #f9f9f9;
+    line-height: 1.6;
+  }
+  
+  header {
+    background-color: #3c3c3c;
+    color: #ffffff;
+    padding: 20px 0;
+  }
+  
+  header h1 {
+    text-align: center;
+    font-size: 2em;
+  }
+  
+  main {
+    max-width: 960px;
+    margin: 20px auto;
+    padding: 0 20px;
+  }
+  
+  input[type="file"] {
+    margin-top: 20px;
+  }
+  
+  canvas {
+    width: 100%;
+    height: auto;
+  }
+  
+  #objectCount {
+    margin-top: 20px;
+    font-size: 1.5em;
+  }
+  
+  /* Media queries for responsiveness */
+  @media only screen and (max-width: 600px) {
+      header h1 {
+          font-size: 1.5em;
+      }
+  
+      #objectCount {
+          font-size: 1.2em;
+      }
+  }
+  

@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Analysis</title>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.toggle-buttons {
+    margin-top: 10px;
+}
+
+.toggle-buttons button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Analysis</h1>
+        <div class="toggle-buttons">
+            <button id="detection-button">Tree Count</button>
+            <button id="segmentation-button">Green Cover</button>
+            <button id="species-button">Tree Species</button>
+            <button id="path-button">Optimal Pathing</button>
+            <button id="historical-button">Historical Data</button>
+        </div>
+    </header>
+    <div class="iframe-container">
+        <iframe id="model-iframe" src="dist/index.html"></iframe>
+    </div>
+    <script>
+        const detectionButton = document.getElementById('detection-button');
+const segmentationButton = document.getElementById('segmentation-button');
+const speciesButton = document.getElementById('species-button');
+const pathButton = document.getElementById('path-button');
+const historicalButton = document.getElementById('historical-button');
+const modelIframe = document.getElementById('model-iframe');
+
+detectionButton.addEventListener('click', () => {
+    modelIframe.src = 'dist/index.html';
+});
+
+segmentationButton.addEventListener('click', () => {
+    modelIframe.src = 'object_segmentation.html';
+});
+
+speciesButton.addEventListener('click', () => {
+    modelIframe.src = 'tree_species.html';
+});
+
+pathButton.addEventListener('click', () => {
+    modelIframe.src = 'optimal_path.html';
+});
+
+historicalButton.addEventListener('click', () => {
+    modelIframe.src = 'historical_data.html';
+});
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Historical Charts</title>
+
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+.toggle-buttons {
+    margin-top: 10px;
+}
+
+.toggle-buttons button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.iframe-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 80vh;
+}
+
+iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Historical Data</h1>
+        <div class="toggle-buttons">
+            <button id="rainfall-button">Rainfall</button>
+            <button id="temperature-button">Temperature</button>
+            <button id="aqi-button">AQI</button>
+            <button id="soil-button">Soil pH</button>
+        </div>
+    </header>
+    <div class="iframe-container">
+        <iframe id="model-iframe" src="rainfall.html"></iframe>
+    </div>
+    <script>
+        const rainfallButton = document.getElementById('rainfall-button');
+const temperatureButton = document.getElementById('temperature-button');
+const aqiButton = document.getElementById('aqi-button');
+const soilButton = document.getElementById('soil-button');
+const modelIframe = document.getElementById('model-iframe');
+
+rainfallButton.addEventListener('click', () => {
+    modelIframe.src = 'rainfall.html';
+});
+
+temperatureButton.addEventListener('click', () => {
+    modelIframe.src = 'temperature.html';
+});
+
+aqiButton.addEventListener('click', () => {
+    modelIframe.src = 'aqi.html';
+});
+
+soilButton.addEventListener('click', () => {
+    modelIframe.src = 'soil.html';
+});
+
+    </script>
+</body>
+</html>

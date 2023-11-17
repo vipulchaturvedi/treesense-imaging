@@ -1,0 +1,131 @@
+/* Reset default browser styles */
+body, h1, h2, p, ul, li, form, button {
+  margin: 0;
+  padding: 0;
+}
+
+/* Define global styles */
+body {
+  font-family: 'Open Sans', sans-serif;
+  background-color: #f0f0f0;
+  color: #333;
+  line-height: 1.6;
+  text-align: center;
+}
+
+/* Header styles */
+.header {
+  @apply bg-blue-500 text-white py-4;
+}
+
+.header-inner {
+  @apply container mx-auto flex items-center justify-between px-4;
+}
+
+.logo {
+  @apply flex items-center no-underline;
+}
+
+.logo-image {
+  @apply w-8 h-8 mr-2;
+}
+
+.logo-text {
+  @apply text-2xl font-semibold;
+}
+
+nav ul {
+  @apply flex space-x-4;
+}
+
+nav a {
+  @apply text-white font-bold no-underline;
+}
+
+/* Mobile menu styles */
+.mobile-menu {
+  @apply hidden md:flex space-x-4;
+}
+
+.mobile-menu-icon {
+  @apply hidden md:flex;
+}
+
+.mobile-menu-icon .bar {
+  @apply w-4 h-px bg-white my-1;
+}
+
+/* Hero section styles */
+.hero {
+  @apply bg-white bg-cover p-8 text-center;
+  background-image: url('/images/tree1.jpg');
+}
+
+.hero-title {
+  @apply text-4xl font-bold text-white;
+}
+
+.hero-description {
+  @apply text-gray-600 text-white mt-4;
+}
+
+.hero-button {
+  @apply btn btn-primary mt-4;
+}
+
+/* Stats section styles */
+.stats {
+  @apply bg-gray-100 py-8;
+}
+
+.stats-cards {
+  @apply container mx-auto grid grid-cols-1 md:grid-cols-3 gap-4;
+}
+
+.stats-card {
+  @apply bg-white p-4 text-center shadow-lg rounded-lg;
+}
+
+/* Footer styles */
+.footer {
+  @apply bg-gray-800 text-white py-4;
+}
+
+.footer-inner {
+  @apply container mx-auto text-center;
+}
+
+.footer a {
+  @apply text-blue-500 no-underline;
+}
+
+/* Responsive Styles */
+@media (max-width: 768px) {
+  .header-inner {
+      @apply flex-col items-start;
+  }
+
+  nav ul {
+      @apply mt-4;
+  }
+
+  nav ul li {
+      @apply block mb-2;
+  }
+
+  .main-menu {
+      @apply hidden;
+  }
+
+  .mobile-menu-icon {
+      @apply block;
+  }
+
+  .mobile-menu.active {
+      @apply block;
+  }
+}
+
+.panoramic img {
+  @apply w-full h-auto;
+}
