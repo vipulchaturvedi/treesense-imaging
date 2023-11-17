@@ -21,20 +21,26 @@ The project includes a website with a landing page and a dashboard offering the 
 
 ## Screenshots
 ![Landing Page](screenshots/landing_page.png)
-*Caption: Landing page showcasing project overview.*
+*Landing page showcasing project overview.*
 
-![Dashboard - Tree Count](screenshots/dashboard_tree_count.png)
-*Caption: Dashboard with the Tree Count tool activated.*
+![Dashboard](screenshots/dashboard.png)
+*Dashboard with the Tree Count tool*
 
-![Dashboard - Green Cover Estimator](screenshots/dashboard_green_cover.png)
-*Caption: Dashboard with the Green Cover Estimator tool activated.*
+![Green Cover Estimator](screenshots/green_cover.png)
+*Green Cover Estimator tool activated.*
+
+![Optimal Pathing](screenshots/optimal_pathing.png)
+*Optimal Pathing tool activated.*
+
+![Historical Data](screenshots/historical_data.png)
+*Historical Data Results*
 
 
 ## Getting Started
-To start using the tools, visit the website and navigate to the dashboard [here](https://treesense.vipulchaturvedi.com/predict)
+To start using the tools, visit the website and navigate to the dashboard [here.](https://treesense.vipulchaturvedi.com/predict)
 
 ## Contributions
-Contributions are welcome! Please open a PR to get started on contributing to the project
+Contributions are welcome! Please open a PR to get started on contributing to the project.
 
 ## License
 This project is licensed under GNU AGPLv3
