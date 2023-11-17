@@ -23,19 +23,16 @@ The project includes a website with a landing page and a dashboard offering the 
 <center>
 
 ![Landing Page](screenshots/landing_page.png)
-*Landing page showcasing project overview.*
 
 ![Dashboard](screenshots/dashboard.png)
-*Dashboard with the Tree Count tool*
+
+![Tree Count](screenshots/tree_count.png)
 
 ![Green Cover Estimator](screenshots/green_cover_estimator.png)
-*Green Cover Estimator tool activated.*
 
 ![Optimal Pathing](screenshots/optimal_pathing.png)
-*Optimal Pathing tool activated.*
 
 ![Historical Data](screenshots/historical_data.png)
-*Historical Data Results*
 
 </center>
 
