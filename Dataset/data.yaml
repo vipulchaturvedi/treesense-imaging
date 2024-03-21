@@ -1,0 +1,13 @@
+train: ../train/images
+val: ../valid/images
+test: ../test/images
+
+nc: 1
+names: ['tree']
+
+roboflow:
+  workspace: project-s402o
+  project: tree-counting-qiw3h
+  version: 1
+  license: CC BY 4.0
+  url: https://universe.roboflow.com/project-s402o/tree-counting-qiw3h/dataset/1
