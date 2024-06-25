@@ -9,7 +9,7 @@ The project includes a website with a landing page and a dashboard offering the 
 - **Tree Count:** Allows accurate tree counting within designated forest areas.
 - **Green Cover Estimator:** Estimates green cover percentage.
 - **Tree Species Identifier:** Identifies tree species.
-- **Optimal Pathing:** [Computes the optimal path between two points within the area.](https://github.com/lag25?tab=repositories)
+- **Optimal Pathing:** [Computes the optimal path between two points within the area.]([https://github.com/lag25?tab=repositories](https://github.com/lag25/ForestPathPlanner))
 - **Historical Data:** Provides historical data for analysis and comparison.
 
 ## Features
