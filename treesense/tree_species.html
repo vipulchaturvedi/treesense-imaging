@@ -4,117 +4,118 @@
     <meta charset="UTF-8">
     <title>Google Map TreeSense</title>
     <style>
-    /* Reset default margin and padding for all elements */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Apply a background color to the body */
-body {
-    background-color: #f4f4f4;
-    font-family: Arial, sans-serif;
-    color: #333;
-    text-align: center;
-}
+        body {
+            background-color: #f9f9f9;
+            font-family: Arial, sans-serif;
+            color: #333;
+            text-align: center;
+        }
 
-/* Style the header */
-h1 {
-    font-size: 24px;
-    margin-bottom: 20px;
-    color: #007BFF; /* Blue color for the header */
-}
+        h1 {
+            font-size: 26px;
+            margin: 20px 0;
+            color: #007BFF;
+        }
 
-/* Style the map container */
-#map {
-    height: 400px;
-    width: 80%; /* Responsive width */
-    margin: 0 auto;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-}
+        #map {
+            height: 450px;
+            width: 90%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+        }
 
-/* Style the output container */
-#output {
-    margin-top: 20px;
-    padding: 20px;
-    background-color: #fff;
-    border: 2px solid #ddd;
-    border-radius: 5px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
+        #output {
+            margin: 30px auto;
+            padding: 15px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.08);
+            width: 90%;
+            max-width: 1100px;
+        }
 
-/* Style the cropped image */
-#croppedImage {
-    max-width: 100%;
-    height: auto;
-    margin-top: 10px;
-}
+        .image-container {
+            display: flex;
+            justify-content: space-around;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
 
-/* Style the location info div */
-#locationInfo {
-    margin-top: 20px;
-    text-align: center;
-}
+        .image-box {
+            flex: 1;
+            min-width: 480px;
+            max-width: 480px;
+        }
 
-/* Style paragraph elements inside location info */
-#locationInfo p {
-    margin: 5px 0;
-    font-size: 16px;
-}
+        .image-box img,
+        .image-box canvas {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            border: 1px solid #bbb;
+            border-radius: 6px;
+        }
 
-/* Style the drawing control buttons */
-.gm-style-drawing-panel {
-    background-color: rgba(255, 255, 255, 0.9);
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-}
+        #locationInfo {
+            margin-top: 20px;
+            font-size: 16px;
+        }
 
-/* Style the drawing control buttons */
-.gm-style-drawing-control {
-    background-color: #007BFF;
-    color: #fff;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    margin: 5px;
-    cursor: pointer;
-}
+        #locationInfo p {
+            margin: 5px 0;
+        }
 
-/* Style the drawing control buttons on hover */
-.gm-style-drawing-control:hover {
-    background-color: #0056b3; /* Darker blue on hover */
-}
+        h3 {
+            margin-bottom: 10px;
+            font-size: 18px;
+            color: #555;
+        }
 
-/* Style the drawing control buttons when active */
-.gm-style-drawing-control.active {
-    background-color: #ff5722; /* Orange color for active button */
-}
-
+        #greenPercent {
+            margin-top: 20px;
+            font-size: 18px;
+            color: green;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
     <h1>Draw Your Map Boundary</h1>
     <div id="map"></div>
     <div id="output">
-        <h2>Cropped Image</h2>
-        <img id="croppedImage" src="" alt="Cropped Image" crossorigin="anonymous">
-       <div id="locationInfo"></div>
+        <h2>Map Images</h2>
+        <div class="image-container">
+            <div class="image-box">
+                <h3>Original Cropped</h3>
+                <img id="croppedImage" src="" alt="Cropped Image" crossorigin="anonymous">
+            </div>
+            <div class="image-box">
+                <h3>Green Analysis</h3>
+                <canvas id="processedCanvas" width="480" height="480"></canvas>
+            </div>
+        </div>
+        <div id="greenPercent"></div>
+        <div id="locationInfo"></div>
     </div>
 
     <script>
-        // Initialize the map
         function initMap() {
             const map = new google.maps.Map(document.getElementById('map'), {
-                center: { lat: 23.2599, lng: 77.4126 }, // Default center (Bhopal)
-                zoom: 12, // Default zoom level
+                center: { lat: 23.2599, lng: 77.4126 },
+                zoom: 12,
             });
 
-            let currentRectangle = null; // To keep track of the current rectangle
+            let currentRectangle = null;
 
-            // Add event listeners to draw custom boundaries on the map
             const drawingManager = new google.maps.drawing.DrawingManager({
                 drawingMode: google.maps.drawing.OverlayType.RECTANGLE,
                 drawingControl: true,
@@ -123,48 +124,74 @@ h1 {
                     drawingModes: ['rectangle'],
                 },
             });
-            
+
             drawingManager.setMap(map);
 
             google.maps.event.addListener(drawingManager, 'overlaycomplete', function(event) {
                 if (currentRectangle) {
-                    currentRectangle.setMap(null); // Remove the previous rectangle
+                    currentRectangle.setMap(null);
                 }
                 currentRectangle = event.overlay;
 
-                // Capture the bounds of the drawn rectangle
                 const bounds = currentRectangle.getBounds();
                 console.log('Captured Bounds:', bounds);
 
-                // Generate a URL to the Cloudflare Workers proxy script
-                const proxyUrl = 'https://gmap-sih-img-proxy.vipulchaturvedi.workers.dev/'; // Replace with your Cloudflare Workers URL
+                const proxyUrl = 'https://gmap-sih-img-proxy.vipulchaturvedi.workers.dev/';
+                const imgUrl = `${proxyUrl}?center=${bounds.getCenter().lat()},${bounds.getCenter().lng()}&zoom=15&size=640x640&path=fillcolor:0x00000000|color:0x00000000|${bounds.getNorthEast().toUrlValue()}|${bounds.getNorthEast().lat()},${bounds.getSouthWest().lng()}|${bounds.getSouthWest().toUrlValue()}|${bounds.getSouthWest().lat()},${bounds.getNorthEast().lng()}&key=AIzaSyCpzV2uci8gLyp8si2idL0Gy1PLUe_J8bU`;
 
-                // Create a new image element
-                const img = new Image();
-                
-                // Set the image source to the Cloudflare Workers proxy URL
-                img.src = `${proxyUrl}?center=${bounds.getCenter().lat()},${bounds.getCenter().lng()}&zoom=15&size=640x640&path=fillcolor:0x00000000|color:0x00000000|${bounds.getNorthEast().toUrlValue()}|${bounds.getNorthEast().lat()},${bounds.getSouthWest().lng()}|${bounds.getSouthWest().toUrlValue()}|${bounds.getSouthWest().lat()},${bounds.getNorthEast().lng()}&key=AIzaSyCpzV2uci8gLyp8si2idL0Gy1PLUe_J8bU`;
-
-
-                // Display the cropped image
                 const croppedImage = document.getElementById('croppedImage');
-                croppedImage.src = img.src;
+                croppedImage.src = imgUrl;
 
-                // Get the location info of the cropped image
-                const locationInfo = {
-                    centerLat: bounds.getCenter().lat(),
-                    centerLng: bounds.getCenter().lng(),
-                    zoom: 15,
+                document.getElementById('locationInfo').innerHTML = `
+                    <p>Center Latitude: ${bounds.getCenter().lat()}</p>
+                    <p>Center Longitude: ${bounds.getCenter().lng()}</p>
+                    <p>Zoom Level: 15</p>
+                `;
+
+                croppedImage.onload = () => {
+                    const canvas = document.getElementById('processedCanvas');
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(croppedImage, 0, 0, canvas.width, canvas.height);
+
+                    const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+                    let totalGreen = 0;
+                    let blackPixelCount = 0;
+
+                    for (let i = 0; i < imageData.data.length; i += 4) {
+                        totalGreen += imageData.data[i + 1];
+                    }
+
+                    const meanGreen = totalGreen / (imageData.data.length / 4);
+
+                    for (let i = 0; i < imageData.data.length; i += 4) {
+                        let gray = imageData.data[i + 1] * 0.587;
+
+                        if (gray < meanGreen / 1.5) {
+                            gray = 0;
+                            blackPixelCount++;
+                        } else {
+                            gray = 255;
+                        }
+
+                        imageData.data[i] = gray;
+                        imageData.data[i + 1] = gray;
+                        imageData.data[i + 2] = gray;
+                        imageData.data[i + 3] = 255;
+                    }
+
+                    ctx.putImageData(imageData, 0, 0);
+
+                    const totalPixels = canvas.width * canvas.height;
+                    const greenPixels = totalPixels - blackPixelCount;
+                    const greenPercent = (greenPixels / totalPixels) * 100;
+
+                    document.getElementById('greenPercent').innerText = `Green/Idle Land Coverage: ${greenPercent.toFixed(2)}%`;
                 };
-
-                // Display location info on the web page
-                const locationInfoDiv = document.getElementById('locationInfo');
-                locationInfoDiv.innerHTML = `<p>Center Latitude: ${locationInfo.centerLat}</p><p>Center Longitude: ${locationInfo.centerLng}</p><p>Zoom Level: ${locationInfo.zoom}</p>`;
             });
         }
     </script>
-    
-    <!-- Include the Google Maps API script with your API key -->
+
     <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCpzV2uci8gLyp8si2idL0Gy1PLUe_J8bU&libraries=drawing&callback=initMap"></script>
 </body>
 </html>
+
